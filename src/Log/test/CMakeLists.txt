@@ -1,0 +1,8 @@
+add_executable( Log.test Log.test.cpp )
+set( test_flags ${Log_compiler_flags} )
+separate_arguments( test_flags )
+foreach( flag IN LISTS test_flags )
+    target_compile_options( Log.test PUBLIC ${flag} )
+endforeach( flag )
+target_link_libraries( Log.test PUBLIC Log )
+add_test( NAME Log COMMAND Log.test ) 

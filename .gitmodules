@@ -1,0 +1,6 @@
+[submodule "dependencies/spdlog-adapter"]
+	path = dependencies/spdlog-adapter
+	url = https://github.com/apmccartney/spdlog-adapter.git
+[submodule "dependencies/catch-adapter"]
+	path = dependencies/catch-adapter
+	url = https://github.com/apmccartney/catch-adapter.git
