@@ -54,11 +54,11 @@ def traverse_dependencies( destination, traversed ):
   for dependency in os.listdir(os.getcwd()) :
     print("working directory: ", os.getcwd())
     print("directory contents: ", os.listdir(os.getcwd()))
-    print("dependency: ", dependency )
+    print("dependency: ", repr(dependency))
     print("traversed: ", traversed)
     print("isdir: ", os.path.isdir( dependency ) )
     print("beentraversed: ", dependency in traversed )
-    if os.path.isdir( dependency ) and (dependency not in traversed) :
+    if os.path.isdir( dependency ) and dependency not in traversed :
         traversed.add( dependency )
         clone_submodule( dependency )
         os.chdir( dependency )
@@ -68,7 +68,7 @@ def traverse_dependencies( destination, traversed ):
         traverse_dependencies( destination, traversed )
         os.chdir( ".." )
   print( os.listdir(os.getcwd()) )
-  os.chdir( os.path.join( "..", ".." ) )
+  os.chdir( os.path.join( ".." ) )
   print( os.listdir(os.getcwd()) )
 
 def collect_subprojects():
