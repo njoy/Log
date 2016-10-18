@@ -47,9 +47,11 @@ def traverse_dependencies( destination, traversed ):
     return
   os.chdir( dependency_directory() )
 
-  print("working directory: ", os.getcwd())
-  print("directory contents: ", os.listdir(os.getcwd()))
   for dependency in os.listdir(os.getcwd()) :
+    print("working directory: ", os.getcwd())
+    print("directory contents: ", os.listdir(os.getcwd()))
+    print("dependency: ", dependency )
+    print("traversed: ", traversed)
     if os.path.isdir( dependency ) and not dependency in traversed :
         traversed.add( dependency )
         clone_submodule( dependency )
