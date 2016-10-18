@@ -24,7 +24,7 @@ def clone_submodule( relative_path ):
   if os.name == "nt":
     invocation.insert( 0, "powershell" )
   clone = subprocess.Popen( invocation )
-  clone.communicate()
+  print( clone.communicate() )
 
 def update_repository():
   """
@@ -36,7 +36,7 @@ def update_repository():
   if os.name == "nt":
     invocation.insert( 0, "powershell" )
   update = subprocess.Popen( invocation )
-  update.communicate()
+  print( update.communicate() )
   
 def traverse_dependencies( destination, traversed ):
   """
@@ -52,6 +52,8 @@ def traverse_dependencies( destination, traversed ):
     print("directory contents: ", os.listdir(os.getcwd()))
     print("dependency: ", dependency )
     print("traversed: ", traversed)
+    print("isdir: ", os.path.isdir( dependency ) )
+    print("beentraversed: ", not dependency in traversed )
     if os.path.isdir( dependency ) and not dependency in traversed :
         traversed.add( dependency )
         clone_submodule( dependency )
@@ -61,8 +63,8 @@ def traverse_dependencies( destination, traversed ):
           os.symlink( os.getcwd(), os.path.join( destination, dependency ) )
         traverse_dependencies( destination, traversed )
         os.chdir( ".." )
+  print( os.listdir(os.getcwd()) )
   os.chdir( os.path.join( "..", ".." ) )
-  print( os.getcwd() )
 
 def collect_subprojects():
   destination = os.path.join( os.getcwd(), "subprojects" )
