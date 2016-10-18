@@ -61,12 +61,15 @@ class Log {
     logger()->info( std::forward<Args>(args)... );
   }
 
+#ifdef NDEBUG
+  template< typename... Args >
+  static void debug( Args... ){}
+#else
   template< typename... Args >
   static void debug( Args... args ){
-    #ifndef NDEBUG
     logger()->debug( std::forward<Args>(args)... );
-    #endif
   }
+#endif
 
   template< typename... Args >
   static void warning( Args... args ){
