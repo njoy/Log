@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 """
 A script to generate a flat subproject directory from a tree of dependency directories
 """
@@ -20,7 +20,7 @@ def clone_submodule( relative_path ):
   print("Fetching " + relative_path + "...")
   print("----------------------------------------")
   print("")
-  invocation = [ "git", "submodule", "update","--init", "--", relative_path ]
+  invocation = [ "git", "submodule", "update", "-q", "--init", "--", relative_path ]
   if os.name == "nt":
     invocation.insert( 0, "powershell" )
   clone = subprocess.Popen( invocation )
@@ -32,7 +32,7 @@ def update_repository():
   """
   print("Updating to master branch...")
   print("")
-  invocation = ["git", "pull", "origin", "master"]
+  invocation = ["git", "pull", "-q", "origin", "master"]
   if os.name == "nt":
     invocation.insert( 0, "powershell" )
   update = subprocess.Popen( invocation )
@@ -47,6 +47,8 @@ def traverse_dependencies( destination, traversed ):
     return
   os.chdir( dependency_directory() )
 
+  print("working directory: ", os.getcwd())
+  print("directory contents: ", os.listdir(os.getcwd()))
   for dependency in os.listdir(os.getcwd()) :
     if os.path.isdir( dependency ) and not dependency in traversed :
         traversed.add( dependency )
