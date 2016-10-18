@@ -23,10 +23,8 @@ def clone_submodule( relative_path ):
   invocation = [ "git", "submodule", "update", "-q", "--init", "--", relative_path ]
   if os.name == "nt":
     invocation.insert( 0, "powershell" )
-  clone = subprocess.Popen( invocation,
-                            stdout=subprocess.PIPE, 
-                            stderr=subprocess.PIPE )
-  print( clone.communicate() )
+  clone = subprocess.Popen( invocation )
+  clone.communicate()
 
 def update_repository():
   """
@@ -37,10 +35,8 @@ def update_repository():
   invocation = ["git", "pull", "-q", "origin", "master"]
   if os.name == "nt":
     invocation.insert( 0, "powershell" )
-  update = subprocess.Popen( invocation,
-                             stdout=subprocess.PIPE, 
-                             stderr=subprocess.PIPE )
-  print( update.communicate() )
+  update = subprocess.Popen( invocation )
+  update.communicate()
   
 def traverse_dependencies( destination, traversed ):
   """
@@ -52,12 +48,6 @@ def traverse_dependencies( destination, traversed ):
   os.chdir( dependency_directory() )
 
   for dependency in os.listdir(os.getcwd()) :
-    print("working directory: ", os.getcwd())
-    print("directory contents: ", os.listdir(os.getcwd()))
-    print("dependency: ", repr(dependency))
-    print("traversed: ", traversed)
-    print("isdir: ", os.path.isdir( dependency ) )
-    print("beentraversed: ", dependency in traversed )
     if os.path.isdir( dependency ) and dependency not in traversed :
         traversed.add( dependency )
         clone_submodule( dependency )
@@ -67,9 +57,7 @@ def traverse_dependencies( destination, traversed ):
           os.symlink( os.getcwd(), os.path.join( destination, dependency ) )
         traverse_dependencies( destination, traversed )
         os.chdir( ".." )
-  print( os.listdir(os.getcwd()) )
   os.chdir( os.path.join( ".." ) )
-  print( os.listdir(os.getcwd()) )
 
 def collect_subprojects():
   destination = os.path.join( os.getcwd(), "subprojects" )
