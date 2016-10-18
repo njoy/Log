@@ -53,8 +53,8 @@ def traverse_dependencies( destination, traversed ):
     print("dependency: ", dependency )
     print("traversed: ", traversed)
     print("isdir: ", os.path.isdir( dependency ) )
-    print("beentraversed: ", not dependency in traversed )
-    if os.path.isdir( dependency ) and not dependency in traversed :
+    print("beentraversed: ", dependency not in traversed )
+    if os.path.isdir( dependency ) and (dependency not in traversed) :
         traversed.add( dependency )
         clone_submodule( dependency )
         os.chdir( dependency )
