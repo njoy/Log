@@ -63,19 +63,19 @@ class Log {
 
   template< typename... Args >
   static void debug( Args... args ){
+    #ifndef NDEBUG
     logger()->debug( std::forward<Args>(args)... );
+    #endif
   }
 
   template< typename... Args >
   static void warning( Args... args ){
-    static auto& log = logger();
-    log->warn( std::forward<Args>(args)... );
+    logger()->warn( std::forward<Args>(args)... );
   }
 
   template< typename... Args >
   static void error( Args... args ){
-    static auto& log = logger();
-    log->error( std::forward<Args>(args)... );
+    logger()->error( std::forward<Args>(args)... );
   }
 };
 

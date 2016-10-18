@@ -9,47 +9,43 @@
 #include "catch.hpp"
 
 TEST_CASE( "Log test" ){
-  std::stringstream buffer;
   std::string testString = "hello world";
-  njoy::Log::add_sink( buffer );
 
   SECTION("info logging"){
+    std::stringstream buffer;
+    njoy::Log::add_sink( buffer );
     njoy::Log::info( testString );
     std::string resultString = buffer.str();
-    auto rend = std::make_reverse_iterator( resultString.end() ) + 1;
-    auto rbegin = rend + 18;
-    auto partialResult = std::string( rbegin.base(), rend.base() );
-    REQUIRE( partialResult == ( "[info] " + testString ) );
+    REQUIRE( resultString == ( "[info] " + testString  +'\n' ) );
   }
 
   SECTION("warning logging"){
+    std::stringstream buffer;
+    njoy::Log::add_sink( buffer );
     njoy::Log::warning( testString );
     std::string resultString = buffer.str();
-    auto rend = std::make_reverse_iterator( resultString.end() ) + 1;
-    auto rbegin = rend + 21;
-    auto partialResult = std::string( rbegin.base(), rend.base() );
-    REQUIRE( partialResult == ( "[warning] " + testString ) );
+    REQUIRE( resultString == ( "[warning] " + testString  +'\n' ) );
   }
 
   SECTION("error logging"){
+    std::stringstream buffer;
+    njoy::Log::add_sink( buffer );
     njoy::Log::error( testString );
     std::string resultString = buffer.str();
-    auto rend = std::make_reverse_iterator( resultString.end() ) + 1;
-    auto rbegin = rend + 19;
-    auto partialResult = std::string( rbegin.base(), rend.base() );
-    REQUIRE( partialResult == ( "[error] " + testString ) );
+    REQUIRE( resultString == ( "[error] " + testString  +'\n' ) );
   }
 
-  #ifndef NDEBUG
   SECTION("debug logging"){
+    std::stringstream buffer;
+    njoy::Log::add_sink( buffer );
     njoy::Log::debug( testString );
     std::string resultString = buffer.str();
-    auto rend = std::make_reverse_iterator( resultString.end() ) + 1;
-    auto rbegin = rend + 19;
-    auto partialResult = std::string( rbegin.base(), rend.base() );
-    REQUIRE( partialResult == ( "[debug] " + testString ) );
+    #ifdef NDEBUG
+    REQUIRE( resultString == ( "" ) );
+    #else
+    REQUIRE( resultString == ( "[debug] " + testString  +'\n' ) );
+    #endif
   }
-  #endif
 
   SECTION("file sink"){
     auto collectFileContents = [](){
