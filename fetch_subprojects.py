@@ -20,7 +20,7 @@ def clone_submodule( relative_path ):
   print("Fetching " + relative_path + "...")
   print("----------------------------------------")
   print("")
-  invocation = [ "git", "submodule", "update", "-q","--init", "--", relative_path ]
+  invocation = [ "git", "submodule", "update","--init", "--", relative_path ]
   if os.name == "nt":
     invocation.insert( 0, "powershell" )
   clone = subprocess.Popen( invocation )
@@ -32,7 +32,7 @@ def update_repository():
   """
   print("Updating to master branch...")
   print("")
-  invocation = ["git", "pull", "-q", "origin", "master"]
+  invocation = ["git", "pull", "origin", "master"]
   if os.name == "nt":
     invocation.insert( 0, "powershell" )
   update = subprocess.Popen( invocation )
