@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#! /usr/bin/env python
 """
 A script to generate a flat subproject directory from a tree of dependency directories
 """
