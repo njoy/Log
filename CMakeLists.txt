@@ -28,12 +28,11 @@ endif()
 
 project( Log VERSION 0.0.1 LANGUAGES CXX )
 
+get_directory_property( is_subproject PARENT_DIRECTORY )
 if( NOT DEFINED is_subproject )
-    set( is_subproject )
     add_subdirectory( subprojects/fmt-adapter )
-    add_subdirectory( subprojects/spdlog-adapter )
     add_subdirectory( subprojects/catch-adapter )
-    unset( is_subproject )
+    add_subdirectory( subprojects/spdlog-adapter )
 endif()
 
 if( NOT DEFINED is_subproject )
@@ -132,7 +131,7 @@ message( STATUS "" )
 
 add_library( Log INTERFACE )
 target_include_directories( Log INTERFACE src )
-target_link_libraries( Log INTERFACE spdlog-adapter INTERFACE catch-adapter ) 
+target_link_libraries( Log INTERFACE catch-adapter INTERFACE spdlog-adapter ) 
 
 if( NOT DEFINED is_subproject ) 
     enable_testing() 

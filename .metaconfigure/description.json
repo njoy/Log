@@ -1,18 +1,18 @@
 {
-"language_revision": "C++14",
-"unit_tests": {
-"Log": [
-"src/Log/test/Log.test.cpp"
-]
-},
-"include_path": "src",
-"target": "include",
-"version": "0.0.1",
-"language": "c++",
 "implementation_files": [],
+"target": "include",
 "name": "Log",
 "header_files": [
 "src/Log.hpp"
 ],
-"is_external_project": false
+"include_path": "src",
+"language_revision": "C++14",
+"language": "c++",
+"version": "0.0.1",
+"is_external_project": false,
+"unit_tests": {
+"Log": [
+"src/Log/test/Log.test.cpp"
+]
+}
 }
