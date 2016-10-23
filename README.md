@@ -1,6 +1,6 @@
 Log
 =====
-A global logger singleton for NJOY21 porjects built upon the spdlog library.
+A global logger singleton for NJOY21 projects built upon the spdlog library.
 
 Minimal Example
 ====================
