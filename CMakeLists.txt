@@ -48,14 +48,14 @@ endif()
 project( Log VERSION 0.0.1 LANGUAGES CXX )
 
 get_directory_property( is_subproject PARENT_DIRECTORY )
-if( NOT TARGET catch-adapter )
-    add_subdirectory( ${ROOT_DIRECTORY}/subprojects/catch-adapter )
-endif()
 if( NOT TARGET fmt-adapter )
     add_subdirectory( ${ROOT_DIRECTORY}/subprojects/fmt-adapter )
 endif()
 if( NOT TARGET spdlog-adapter )
     add_subdirectory( ${ROOT_DIRECTORY}/subprojects/spdlog-adapter )
+endif()
+if( NOT TARGET catch-adapter )
+    add_subdirectory( ${ROOT_DIRECTORY}/subprojects/catch-adapter )
 endif()
 
 if( NOT is_subproject )
@@ -125,14 +125,20 @@ if( NOT is_subproject )
     endif()
 endif()
 
+if ( NOT GIT_EXECUTABLE )
+    find_package( Git )
+    if ( NOT GIT_FOUND )
+        message( FATAL_ERROR "git installation was not found." )
+    endif()
+endif()
 execute_process(
-    COMMAND git rev-parse --abbrev-ref HEAD
+    COMMAND ${GIT_EXECUTABLE} rev-parse --abbrev-ref HEAD
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
     OUTPUT_VARIABLE GIT_BRANCH
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 execute_process(
-    COMMAND git rev-parse HEAD
+    COMMAND ${GIT_EXECUTABLE} rev-parse HEAD
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
     OUTPUT_VARIABLE GIT_HASH
     OUTPUT_STRIP_TRAILING_WHITESPACE
@@ -154,7 +160,7 @@ message( STATUS "" )
 
 add_library( Log INTERFACE )
 target_include_directories( Log INTERFACE src )
-target_link_libraries( Log INTERFACE catch-adapter INTERFACE spdlog-adapter ) 
+target_link_libraries( Log INTERFACE spdlog-adapter INTERFACE catch-adapter ) 
 
 if( NOT is_subproject ) 
     enable_testing() 
