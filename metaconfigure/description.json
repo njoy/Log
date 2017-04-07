@@ -48,9 +48,9 @@
           ]
         },
         "standard": {
-          "c11": "-std=c11",
-          "c89": "-std=c90",
-          "c99": "-std=c99"
+          "c++11": "-std=c++11",
+          "c++14": "-std=c++14",
+          "c++98": "-std=c++98"
         }
       }
     },
@@ -209,7 +209,7 @@
         "flags": {
           "base project": [],
           "common": [
-            "-stdlib=libc++"
+            "-stdlib=libstdc++"
           ],
           "coverage": [
             "--coverage"
@@ -217,9 +217,7 @@
           "debug": [
             "-O0",
             "-g",
-            "-gdwarf-3",
-            "-frounding-math",
-            "-fsignaling-nans"
+            "-gdwarf-3"
           ],
           "link time optimization": [
             "-flto"
@@ -251,12 +249,12 @@
           ]
         },
         "standard": {
-          "c11": "-std=c11",
-          "c89": "-std=c90",
-          "c99": "-std=c99"
+          "c++11": "-std=c++11",
+          "c++14": "-std=c++14",
+          "c++98": "-std=c++98"
         }
       },
-      "minimum version": "6.2",
+      "minimum version": "3.8",
       "osx": {
         "flags": {
           "base project": [],
@@ -303,9 +301,9 @@
           ]
         },
         "standard": {
-          "c11": "-std=c11",
-          "c89": "-std=c90",
-          "c99": "-std=c99"
+          "c++11": "-std=c++11",
+          "c++14": "-std=c++14",
+          "c++98": "-std=c++98"
         }
       },
       "windows": {
@@ -354,9 +352,9 @@
           ]
         },
         "standard": {
-          "c11": "-std=c11",
-          "c89": "-std=c90",
-          "c99": "-std=c99"
+          "c++11": "-std=c++11",
+          "c++14": "-std=c++14",
+          "c++98": "-std=c++98"
         }
       }
     }
