@@ -341,13 +341,13 @@ def collect_revision_info(state):
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
         OUTPUT_VARIABLE GIT_BRANCH
         OUTPUT_STRIP_TRAILING_WHITESPACE
-   )
+    )
     execute_process(
         COMMAND ${GIT_EXECUTABLE} rev-parse HEAD
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
         OUTPUT_VARIABLE GIT_HASH
         OUTPUT_STRIP_TRAILING_WHITESPACE
-   ) """)
+    ) """)
 
      
 def print_banner(state):
@@ -544,7 +544,6 @@ def install(state):
 
             contents += """
         install( DIRECTORY {include_path} DESTINATION include
-                 FILES_MATCHING REGEX "{regex}"
                  FILE_PERMISSIONS OWNER_READ OWNER_WRITE 
                                   GROUP_READ 
                                   WORLD_READ
@@ -554,6 +553,10 @@ def install(state):
             if "group id" in state:
                 contents += """
                 SETGID {gid}"""
+
+
+            contents +=     """
+                 FILES_MATCHING REGEX "{regex}" """
 
             contents += """ )
                 """
