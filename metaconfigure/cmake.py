@@ -370,7 +370,7 @@ def link_dependencies(state):
     if len(state['subprojects']) > 0 :
         contents += '\ntarget_link_libraries( {name}'
         for name, subproject in state['subprojects'].items():
-            contents += (' INTERFACE {}' if has_library(subproject) else ' PUBLIC {}').format(name)
+            contents += (' PUBLIC {}' if has_library(subproject) else ' INTERFACE {}').format(name)
 
         contents += ' )\n'
 
@@ -432,17 +432,14 @@ if ( NOT is_subproject )
     target_link_libraries( {name}_executable {policy} {name} )
 endif()
         """)
-
-    driver = state['driver'] if 'driver' in state else ''
-    include_path = state['include path'] if 'include path' in state else ''    
-    return contents.format(name=state['name'],
-                           driver=driver,
-                           language=language[state['language']],
-                           policy=policy,
-                           sources=sources,
-                           compile_flags=compile_flags,
-                           link_flags=link_flags,
-                           include_path=include_path)
+    return textwrap.dedent(contents.format(name=state['name'],
+                                           driver=(state['driver'] if 'driver' in state else ''),
+                                           language=language[state['language']],
+                                           policy=policy,
+                                           sources=sources,
+                                           compile_flags=compile_flags,
+                                           link_flags=link_flags,
+                                           include_path=state['include path'] if 'include path' in state else ''))
 
 
 def add_tests(state):
