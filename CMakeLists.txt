@@ -25,8 +25,8 @@ get_directory_property( is_subproject PARENT_DIRECTORY )
 include( CMakeDependentOption REQUIRED )
 
 set( Log_AppleClang_minimum_version 8.0 )
-set( Log_GNU_minimum_version 6.2 )
 set( Log_Clang_minimum_version 3.8 )
+set( Log_GNU_minimum_version 6.2 )
 
 if( Log_${CMAKE_CXX_COMPILER_ID}_minimum_version )
     if( CMAKE_CXX_COMPILER_VERSION AND
@@ -76,54 +76,6 @@ set( Log_AppleClang_Darwin_link_time_optimization_flags "-flto" )
 set( Log_AppleClang_Darwin_profile_use_flags "-fprofile-use='${CMAKE_BINARY_DIR}/profiling'" )
 set( Log_AppleClang_Darwin_nonportable_optimization_flags "-march=native" )
 set( Log_AppleClang_Darwin_static_flags "-static" )
-set( Log_GNU_Darwin_common_flags "-stdlib=libc++" "-Wall" "-Wextra" "-Wpedantic" "-std=c++14" )
-set( Log_GNU_Darwin_DEBUG_flags "-O0" "-g" "-gdwarf-3" "-frounding-math" "-fsignaling-nans" )
-set( Log_GNU_Darwin_RELEASE_flags "-O3" "-DNDEBUG" )
-set( Log_GNU_Darwin_strict_flags "-Werror" )
-set( Log_GNU_Darwin_coverage_flags "--coverage" )
-set( Log_GNU_Darwin_subproject_flags  )
-set( Log_GNU_Darwin_base_project_flags  )
-set( Log_GNU_Darwin_profile_generate_flags "-fprofile-generate='${CMAKE_BINARY_DIR}/profiling'" )
-set( Log_GNU_Darwin_link_time_optimization_flags "-flto" )
-set( Log_GNU_Darwin_profile_use_flags "-fprofile-use='${CMAKE_BINARY_DIR}/profiling'" )
-set( Log_GNU_Darwin_nonportable_optimization_flags "-march=native" )
-set( Log_GNU_Darwin_static_flags "-static" )
-set( Log_GNU_Linux_common_flags "-stdlib=libstdc++" "-Wall" "-Wextra" "-Wpedantic" "-std=c++14" )
-set( Log_GNU_Linux_DEBUG_flags "-O0" "-g" "-gdwarf-3" "-frounding-math" "-fsignaling-nans" )
-set( Log_GNU_Linux_RELEASE_flags "-O3" "-DNDEBUG" )
-set( Log_GNU_Linux_strict_flags "-Werror" )
-set( Log_GNU_Linux_coverage_flags "--coverage" )
-set( Log_GNU_Linux_subproject_flags  )
-set( Log_GNU_Linux_base_project_flags  )
-set( Log_GNU_Linux_profile_generate_flags "-fprofile-generate='${CMAKE_BINARY_DIR}/profiling'" )
-set( Log_GNU_Linux_link_time_optimization_flags "-flto" )
-set( Log_GNU_Linux_profile_use_flags "-fprofile-use='${CMAKE_BINARY_DIR}/profiling'" )
-set( Log_GNU_Linux_nonportable_optimization_flags "-march=native" )
-set( Log_GNU_Linux_static_flags "-static" )
-set( Log_GNU_Windows_common_flags "-stdlib=libstdc++" "-Wall" "-Wextra" "-Wpedantic" "-std=c++14" )
-set( Log_GNU_Windows_DEBUG_flags "-O0" "-g" "-gdwarf-3" "-frounding-math" "-fsignaling-nans" )
-set( Log_GNU_Windows_RELEASE_flags "-O3" "-DNDEBUG" )
-set( Log_GNU_Windows_strict_flags "-Werror" )
-set( Log_GNU_Windows_coverage_flags "--coverage" )
-set( Log_GNU_Windows_subproject_flags  )
-set( Log_GNU_Windows_base_project_flags  )
-set( Log_GNU_Windows_profile_generate_flags "-fprofile-generate='${CMAKE_BINARY_DIR}/profiling'" )
-set( Log_GNU_Windows_link_time_optimization_flags "-flto" )
-set( Log_GNU_Windows_profile_use_flags "-fprofile-use='${CMAKE_BINARY_DIR}/profiling'" )
-set( Log_GNU_Windows_nonportable_optimization_flags "-march=native" )
-set( Log_GNU_Windows_static_flags "-static" )
-set( Log_Clang_Darwin_common_flags "-stdlib=libc++" "-Wall" "-Wextra" "-Wpedantic" "-std=c++14" )
-set( Log_Clang_Darwin_DEBUG_flags "-O0" "-g" "-gdwarf-3" "-frounding-math" "-fsignaling-nans" )
-set( Log_Clang_Darwin_RELEASE_flags "-O3" "-DNDEBUG" )
-set( Log_Clang_Darwin_strict_flags "-Werror" )
-set( Log_Clang_Darwin_coverage_flags "--coverage" )
-set( Log_Clang_Darwin_subproject_flags  )
-set( Log_Clang_Darwin_base_project_flags  )
-set( Log_Clang_Darwin_profile_generate_flags "-fprofile-generate='${CMAKE_BINARY_DIR}/profiling'" )
-set( Log_Clang_Darwin_link_time_optimization_flags "-flto" )
-set( Log_Clang_Darwin_profile_use_flags "-fprofile-use='${CMAKE_BINARY_DIR}/profiling'" )
-set( Log_Clang_Darwin_nonportable_optimization_flags "-march=native" )
-set( Log_Clang_Darwin_static_flags "-static" )
 set( Log_Clang_Linux_common_flags "-stdlib=libstdc++" "-Wall" "-Wextra" "-Wpedantic" "-std=c++14" )
 set( Log_Clang_Linux_DEBUG_flags "-O0" "-g" "-gdwarf-3" "-frounding-math" "-fsignaling-nans" )
 set( Log_Clang_Linux_RELEASE_flags "-O3" "-DNDEBUG" )
@@ -136,6 +88,18 @@ set( Log_Clang_Linux_link_time_optimization_flags "-flto" )
 set( Log_Clang_Linux_profile_use_flags "-fprofile-use='${CMAKE_BINARY_DIR}/profiling'" )
 set( Log_Clang_Linux_nonportable_optimization_flags "-march=native" )
 set( Log_Clang_Linux_static_flags "-static" )
+set( Log_Clang_Darwin_common_flags "-stdlib=libc++" "-Wall" "-Wextra" "-Wpedantic" "-std=c++14" )
+set( Log_Clang_Darwin_DEBUG_flags "-O0" "-g" "-gdwarf-3" "-frounding-math" "-fsignaling-nans" )
+set( Log_Clang_Darwin_RELEASE_flags "-O3" "-DNDEBUG" )
+set( Log_Clang_Darwin_strict_flags "-Werror" )
+set( Log_Clang_Darwin_coverage_flags "--coverage" )
+set( Log_Clang_Darwin_subproject_flags  )
+set( Log_Clang_Darwin_base_project_flags  )
+set( Log_Clang_Darwin_profile_generate_flags "-fprofile-generate='${CMAKE_BINARY_DIR}/profiling'" )
+set( Log_Clang_Darwin_link_time_optimization_flags "-flto" )
+set( Log_Clang_Darwin_profile_use_flags "-fprofile-use='${CMAKE_BINARY_DIR}/profiling'" )
+set( Log_Clang_Darwin_nonportable_optimization_flags "-march=native" )
+set( Log_Clang_Darwin_static_flags "-static" )
 set( Log_Clang_Windows_common_flags "-stdlib=libc++" "-Wall" "-Wextra" "-Wpedantic" "-std=c++14" )
 set( Log_Clang_Windows_DEBUG_flags "-O0" "-g" "-gdwarf-3" "-frounding-math" "-fsignaling-nans" )
 set( Log_Clang_Windows_RELEASE_flags "-O3" "-DNDEBUG" )
@@ -148,6 +112,42 @@ set( Log_Clang_Windows_link_time_optimization_flags "-flto" )
 set( Log_Clang_Windows_profile_use_flags "-fprofile-use='${CMAKE_BINARY_DIR}/profiling'" )
 set( Log_Clang_Windows_nonportable_optimization_flags "-march=native" )
 set( Log_Clang_Windows_static_flags "-static" )
+set( Log_GNU_Linux_common_flags "-stdlib=libstdc++" "-Wall" "-Wextra" "-Wpedantic" "-std=c++14" )
+set( Log_GNU_Linux_DEBUG_flags "-O0" "-g" "-gdwarf-3" "-frounding-math" "-fsignaling-nans" )
+set( Log_GNU_Linux_RELEASE_flags "-O3" "-DNDEBUG" )
+set( Log_GNU_Linux_strict_flags "-Werror" )
+set( Log_GNU_Linux_coverage_flags "--coverage" )
+set( Log_GNU_Linux_subproject_flags  )
+set( Log_GNU_Linux_base_project_flags  )
+set( Log_GNU_Linux_profile_generate_flags "-fprofile-generate='${CMAKE_BINARY_DIR}/profiling'" )
+set( Log_GNU_Linux_link_time_optimization_flags "-flto" )
+set( Log_GNU_Linux_profile_use_flags "-fprofile-use='${CMAKE_BINARY_DIR}/profiling'" )
+set( Log_GNU_Linux_nonportable_optimization_flags "-march=native" )
+set( Log_GNU_Linux_static_flags "-static" )
+set( Log_GNU_Darwin_common_flags "-stdlib=libc++" "-Wall" "-Wextra" "-Wpedantic" "-std=c++14" )
+set( Log_GNU_Darwin_DEBUG_flags "-O0" "-g" "-gdwarf-3" "-frounding-math" "-fsignaling-nans" )
+set( Log_GNU_Darwin_RELEASE_flags "-O3" "-DNDEBUG" )
+set( Log_GNU_Darwin_strict_flags "-Werror" )
+set( Log_GNU_Darwin_coverage_flags "--coverage" )
+set( Log_GNU_Darwin_subproject_flags  )
+set( Log_GNU_Darwin_base_project_flags  )
+set( Log_GNU_Darwin_profile_generate_flags "-fprofile-generate='${CMAKE_BINARY_DIR}/profiling'" )
+set( Log_GNU_Darwin_link_time_optimization_flags "-flto" )
+set( Log_GNU_Darwin_profile_use_flags "-fprofile-use='${CMAKE_BINARY_DIR}/profiling'" )
+set( Log_GNU_Darwin_nonportable_optimization_flags "-march=native" )
+set( Log_GNU_Darwin_static_flags "-static" )
+set( Log_GNU_Windows_common_flags "-stdlib=libstdc++" "-Wall" "-Wextra" "-Wpedantic" "-std=c++14" )
+set( Log_GNU_Windows_DEBUG_flags "-O0" "-g" "-gdwarf-3" "-frounding-math" "-fsignaling-nans" )
+set( Log_GNU_Windows_RELEASE_flags "-O3" "-DNDEBUG" )
+set( Log_GNU_Windows_strict_flags "-Werror" )
+set( Log_GNU_Windows_coverage_flags "--coverage" )
+set( Log_GNU_Windows_subproject_flags  )
+set( Log_GNU_Windows_base_project_flags  )
+set( Log_GNU_Windows_profile_generate_flags "-fprofile-generate='${CMAKE_BINARY_DIR}/profiling'" )
+set( Log_GNU_Windows_link_time_optimization_flags "-flto" )
+set( Log_GNU_Windows_profile_use_flags "-fprofile-use='${CMAKE_BINARY_DIR}/profiling'" )
+set( Log_GNU_Windows_nonportable_optimization_flags "-march=native" )
+set( Log_GNU_Windows_static_flags "-static" )
 get_directory_property( is_subproject PARENT_DIRECTORY )
 
 if( NOT TARGET fmt-adapter )
@@ -163,24 +163,24 @@ if( NOT TARGET spdlog-adapter )
 endif()
 
 
- if ( NOT GIT_EXECUTABLE )
-     find_package( Git )
-     if ( NOT GIT_FOUND )
-         message( FATAL_ERROR "git installation was not found." )
-     endif()
- endif()
+if ( NOT GIT_EXECUTABLE )
+    find_package( Git )
+    if ( NOT GIT_FOUND )
+        message( FATAL_ERROR "git installation was not found." )
+    endif()
+endif()
 
- execute_process(
-     COMMAND ${GIT_EXECUTABLE} rev-parse --abbrev-ref HEAD
-     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-     OUTPUT_VARIABLE GIT_BRANCH
-     OUTPUT_STRIP_TRAILING_WHITESPACE
+execute_process(
+    COMMAND ${GIT_EXECUTABLE} rev-parse --abbrev-ref HEAD
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+    OUTPUT_VARIABLE GIT_BRANCH
+    OUTPUT_STRIP_TRAILING_WHITESPACE
 )
- execute_process(
-     COMMAND ${GIT_EXECUTABLE} rev-parse HEAD
-     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-     OUTPUT_VARIABLE GIT_HASH
-     OUTPUT_STRIP_TRAILING_WHITESPACE
+execute_process(
+    COMMAND ${GIT_EXECUTABLE} rev-parse HEAD
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+    OUTPUT_VARIABLE GIT_HASH
+    OUTPUT_STRIP_TRAILING_WHITESPACE
 ) 
 
 message( STATUS "" )
@@ -201,10 +201,10 @@ target_link_libraries( Log INTERFACE catch-adapter INTERFACE spdlog-adapter )
 
 
 install( DIRECTORY src DESTINATION include
-         FILES_MATCHING REGEX ".*\.h++|.*\.hxx|.*\.hpp|.*\.hh|.*\.h"
          FILE_PERMISSIONS OWNER_READ OWNER_WRITE 
                           GROUP_READ 
                           WORLD_READ
          DIRECTORY_PERMISSIONS OWNER_READ OWNER_WRITE 
                                GROUP_READ 
-                               WORLD_READ )
+                               WORLD_READ
+         FILES_MATCHING REGEX ".*\.h++|.*\.hxx|.*\.hpp|.*\.hh"  )
