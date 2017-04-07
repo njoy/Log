@@ -9,6 +9,8 @@ Minimal Example
 #include <sstream>
 #include "Log.hpp"
 
+using namespace njoy;
+
 int main(){
 
   /* Logs use python-like format strings. See the fmt library for more information */
