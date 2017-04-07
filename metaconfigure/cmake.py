@@ -368,7 +368,7 @@ def link_dependencies(state):
     contents=''
     name=state['name']
     if len(state['subprojects']) > 0 :
-        contents += '\ntarget_link_libraries( {}'
+        contents += '\ntarget_link_libraries( {name}'
         for name, subproject in state['subprojects'].items():
             contents += (' INTERFACE {}' if has_library(subproject) else ' PUBLIC {}').format(name)
 
@@ -432,15 +432,17 @@ if ( NOT is_subproject )
     target_link_libraries( {name}_executable {policy} {name} )
 endif()
         """)
-        
-    return textwrap.dedent(contents.format(name=state['name'],
-                                             driver=(state['driver'] if 'driver' in state else ''),
-                                             language=language[state['language']],
-                                             policy=policy,
-                                             sources=sources,
-                                             compile_flags=compile_flags,
-                                             link_flags=link_flags,
-                                             include_path=state['include path'] if 'include path' in state else ''))
+
+    driver = state['driver'] if 'driver' in state else ''
+    include_path = state['include path'] if 'include path' in state else ''    
+    return contents.format(name=state['name'],
+                           driver=driver,
+                           language=language[state['language']],
+                           policy=policy,
+                           sources=sources,
+                           compile_flags=compile_flags,
+                           link_flags=link_flags,
+                           include_path=include_path)
 
 
 def add_tests(state):
@@ -501,8 +503,8 @@ add_test( NAME {test_name} COMMAND {executable_name} )"""
 
 
 def is_subdirectory(child, parent):
-    true_child=os.realpath(child)
-    true_parent=os.realpath(parent)
+    true_child=os.path.realpath(child)
+    true_parent=os.path.realpath(parent)
     while true_child:
         true_child=os.path.split(true_child)[0]
         if true_child == true_parent:
@@ -538,7 +540,7 @@ def install(state):
         """
 
     regex=[]
-    if 'include path' in state and is_subdirectory(state['include path'], os.cwd()):
+    if 'include path' in state and is_subdirectory(state['include path'], os.getcwd()):
         if 'header files' in state['file extension']:
             for extension in state['file extension']['header files']:
                 regex.append(".*\.{0}".format(extension))                
