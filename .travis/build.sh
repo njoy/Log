@@ -8,16 +8,19 @@ if [ "$TRAVIS_OS_NAME" = "linux" ]; then
   if [ "$CXX" = "clang++" ]; then
     export appended_flags=$appended_flags"-stdlib=libstdc++"
     export PATH=/usr/bin:$PATH
-    export NOPE='-D no_link_time_optimization=TRUE'
+    export NOPE='-D link_time_optimization=OFF'
+  else
+    export NOPE='-D link_time_optimization=ON'
   fi;
+  
 fi
 
 ./fetch_subprojects.py
 mkdir build
 cd build
-cmake -D build_type=$build_type \
+cmake -D CMAKE_BUILD_TYPE=$build_type \
       -D static_libraries=$static_libraries \
-      -D appended_flags="$appended_flags" \
+      -D Log_appended_flags="$appended_flags" \
       $NOPE ..
 make -j2
 export COMPILATION_FAILURE=$?
