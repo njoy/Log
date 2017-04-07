@@ -372,7 +372,8 @@
       "h++",
       "hxx",
       "hpp",
-      "hh"
+      "hh",
+      "h"
     ],
     "implementation files": [
       "c++",
