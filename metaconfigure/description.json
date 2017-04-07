@@ -48,9 +48,9 @@
           ]
         },
         "standard": {
-          "c++11": "-std=c++11",
-          "c++14": "-std=c++14",
-          "c++98": "-std=c++98"
+          "c11": "-std=c11",
+          "c89": "-std=c90",
+          "c99": "-std=c99"
         }
       }
     },
@@ -58,9 +58,7 @@
       "linux": {
         "flags": {
           "base project": [],
-          "common": [
-            "-stdlib=libstdc++"
-          ],
+          "common": [],
           "coverage": [
             "--coverage"
           ],
@@ -110,9 +108,7 @@
       "osx": {
         "flags": {
           "base project": [],
-          "common": [
-            "-stdlib=libc++"
-          ],
+          "common": [],
           "coverage": [
             "--coverage"
           ],
@@ -161,9 +157,7 @@
       "windows": {
         "flags": {
           "base project": [],
-          "common": [
-            "-stdlib=libstdc++"
-          ],
+          "common": [],
           "coverage": [
             "--coverage"
           ],
@@ -215,7 +209,7 @@
         "flags": {
           "base project": [],
           "common": [
-            "-stdlib=libstdc++"
+            "-stdlib=libc++"
           ],
           "coverage": [
             "--coverage"
@@ -257,12 +251,12 @@
           ]
         },
         "standard": {
-          "c++11": "-std=c++11",
-          "c++14": "-std=c++14",
-          "c++98": "-std=c++98"
+          "c11": "-std=c11",
+          "c89": "-std=c90",
+          "c99": "-std=c99"
         }
       },
-      "minimum version": "3.8",
+      "minimum version": "6.2",
       "osx": {
         "flags": {
           "base project": [],
@@ -309,9 +303,9 @@
           ]
         },
         "standard": {
-          "c++11": "-std=c++11",
-          "c++14": "-std=c++14",
-          "c++98": "-std=c++98"
+          "c11": "-std=c11",
+          "c89": "-std=c90",
+          "c99": "-std=c99"
         }
       },
       "windows": {
@@ -360,9 +354,9 @@
           ]
         },
         "standard": {
-          "c++11": "-std=c++11",
-          "c++14": "-std=c++14",
-          "c++98": "-std=c++98"
+          "c11": "-std=c11",
+          "c89": "-std=c90",
+          "c99": "-std=c99"
         }
       }
     }
