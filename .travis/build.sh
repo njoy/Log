@@ -6,7 +6,6 @@ if [ "$TRAVIS_OS_NAME" = "linux" ]; then
   sudo update-alternatives --config gcc
   sudo update-alternatives --config clang
   if [ "$CXX" = "clang++" ]; then
-    export appended_flags=$appended_flags"-stdlib=libstdc++"
     export PATH=/usr/bin:$PATH
     export NOPE='-D link_time_optimization=OFF'
   else
