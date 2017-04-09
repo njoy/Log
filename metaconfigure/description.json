@@ -207,7 +207,7 @@
         "flags": {
           "base project": [],
           "common": [
-            "-stdlib=libc++"
+            "-stdlib=libstdc++"
           ],
           "coverage": [
             "--coverage"
