@@ -21,7 +21,7 @@ cmake -D CMAKE_BUILD_TYPE=$build_type \
       -D static_libraries=$static_libraries \
       -D Log_appended_flags="$appended_flags" \
       $NOPE ..
-make -j2
+make VERBOSE=1 -j2
 export COMPILATION_FAILURE=$?
 ctest --output-on-failure -j2
 export TEST_FAILURE=$?
