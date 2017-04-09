@@ -14,9 +14,7 @@
           "debug": [
             "-O0",
             "-g",
-            "-gdwarf-3",
-            "-frounding-math",
-            "-fsignaling-nans"
+            "-gdwarf-3"
           ],
           "link time optimization": [
             "-flto"
@@ -209,7 +207,7 @@
         "flags": {
           "base project": [],
           "common": [
-            "-stdlib=libstdc++"
+            "-stdlib=libc++"
           ],
           "coverage": [
             "--coverage"
@@ -267,9 +265,7 @@
           "debug": [
             "-O0",
             "-g",
-            "-gdwarf-3",
-            "-frounding-math",
-            "-fsignaling-nans"
+            "-gdwarf-3"
           ],
           "link time optimization": [
             "-flto"
@@ -318,9 +314,7 @@
           "debug": [
             "-O0",
             "-g",
-            "-gdwarf-3",
-            "-frounding-math",
-            "-fsignaling-nans"
+            "-gdwarf-3"
           ],
           "link time optimization": [
             "-flto"
