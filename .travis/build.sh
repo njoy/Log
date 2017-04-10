@@ -11,7 +11,13 @@ if [ "$TRAVIS_OS_NAME" = "linux" ]; then
   else
     export NOPE='-D link_time_optimization=ON'
   fi;
-  
+  if [ "$build_type" = "coverage" ]; then
+    export build_type=DEBUG
+    export coverage=true
+    export NOPE="$NOPE -D coverage=ON"
+  else
+    export coverage=false
+  fi;  
 fi
 
 ./fetch_subprojects.py
@@ -25,12 +31,13 @@ make VERBOSE=1 -j2
 export COMPILATION_FAILURE=$?
 ctest --output-on-failure -j2
 export TEST_FAILURE=$?
-if [ "$build_type" = "coverage" ]
-then
+
+if $coverage; then
     pip install --user cpp-coveralls
     echo "loading coverage information"
     coveralls  --exclude-pattern "/usr/include/.*|.*/CMakeFiles/.*|.*subprojects.*|.*dependencies.*|.*test\.cpp" --root ".." --build-root "." --gcov-options '\-lp'
 fi
+
 if [ $COMPILATION_FAILURE -ne 0 ] || [ $TEST_FAILURE -ne 0 ];
 then
     exit 1
