@@ -64,7 +64,6 @@
             "-O0",
             "-g",
             "-gdwarf-3",
-            "-frounding-math",
             "-fsignaling-nans"
           ],
           "link time optimization": [
@@ -114,7 +113,6 @@
             "-O0",
             "-g",
             "-gdwarf-3",
-            "-frounding-math",
             "-fsignaling-nans"
           ],
           "link time optimization": [
@@ -163,7 +161,6 @@
             "-O0",
             "-g",
             "-gdwarf-3",
-            "-frounding-math",
             "-fsignaling-nans"
           ],
           "link time optimization": [
