@@ -68,7 +68,7 @@ languages['fortran']['compiler']['gfortran']['linux']['flags']['warning'] = lang
 languages['c']['compiler']['gcc']['linux']['flags']['strict'] = ['-Werror']
 languages['fortran']['compiler']['gfortran']['linux']['flags']['strict'] = languages['c']['compiler']['gcc']['linux']['flags']['strict']
 
-languages['c']['compiler']['gcc']['linux']['flags']['debug'] = ['-O0', '-g', '-gdwarf-3', '-frounding-math', '-fsignaling-nans']
+languages['c']['compiler']['gcc']['linux']['flags']['debug'] = ['-O0', '-g', '-gdwarf-3', '-fsignaling-nans']
 languages['fortran']['compiler']['gfortran']['linux']['flags']['debug'] = languages['c']['compiler']['gcc']['linux']['flags']['debug'] + ['-fcheck=all', '-ffpe-trap=invalid,zero,overflow']
 
 languages['c']['compiler']['gcc']['linux']['flags']['coverage'] = ['--coverage']
@@ -99,7 +99,6 @@ languages['c++']['compiler']['g++']['windows'] = languages['c++']['compiler']['g
 languages['c++']['compiler']['llvm clang++'] = copy.deepcopy( languages['c++']['compiler']['g++'])
 languages['c++']['compiler']['llvm clang++']['linux']['flags']['common'] = ['-stdlib=libstdc++']
 languages['c++']['compiler']['llvm clang++']['linux']['flags']['debug'].remove('-fsignaling-nans')
-languages['c++']['compiler']['llvm clang++']['linux']['flags']['debug'].remove('-frounding-math')
 
 languages['c++']['compiler']['llvm clang++']['osx']['flags'] = copy.deepcopy(languages['c++']['compiler']['llvm clang++']['linux']['flags'])
 languages['c++']['compiler']['llvm clang++']['osx']['flags']['common'] = ['-stdlib=libc++']
