@@ -5,6 +5,7 @@
 
 #define FMT_HEADER_ONLY
 #include "fmt/format.h"
+#include "fmt/ostream.h"
 
 #define SPDLOG_FMT_EXTERNAL
 #include "spdlog/spdlog.h"
