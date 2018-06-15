@@ -3,11 +3,7 @@
 
 #include <memory>
 
-#define FMT_HEADER_ONLY
-#include "fmt/format.h"
-#include "fmt/ostream.h"
-
-#define SPDLOG_FMT_EXTERNAL
+#include "spdlog/fmt/ostr.h"
 #include "spdlog/spdlog.h"
 #include "spdlog/sinks/dist_sink.h"
 #include "spdlog/sinks/file_sinks.h"
