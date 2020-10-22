@@ -21,6 +21,8 @@ FetchContent_Declare( spdlog
     GIT_TAG         a51b4856377a71f81b6d74b9af459305c4c644f8
     GIT_SHALLOW     TRUE
     )
+set( SPDLOG_BUILD_EXAMPLES OFF )
+set( SPDLOG_BUILD_TESTING OFF )
 
 
 ########################################################################
