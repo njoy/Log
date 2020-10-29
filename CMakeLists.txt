@@ -31,6 +31,7 @@ set( debug_flags "-O0" "-g" )
 # Dependencies
 ########################################################################
 
+set( SPDLOG_BUILD_TESTING CACHE BOOL OFF )
 set( REPOSITORIES "release"
     CACHE STRING
     "Options for where to fetch repositories: develop, release, local"
