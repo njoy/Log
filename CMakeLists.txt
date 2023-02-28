@@ -2,8 +2,14 @@
 # Preamble
 ########################################################################
 
+set(subproject OFF)
+if(DEFINED PROJECT_NAME)
+  set(subproject ON)
+endif()
+
 cmake_minimum_required( VERSION 3.14 )
 project( Log LANGUAGES CXX )
+
 
 
 ########################################################################
@@ -13,8 +19,15 @@ project( Log LANGUAGES CXX )
 set( CMAKE_CXX_STANDARD 17 )
 set( CMAKE_CXX_STANDARD_REQUIRED YES )
 
-option( Log_unit_tests
+include(CTest)
+include(CMakeDependentOption)
+
+cmake_dependent_option( Log_unit_tests
     "Compile the Log unit tests and integrate with ctest" ON
+    BUILD_TESTING AND NOT ${subproject}
+)
+option( Log_installation
+    "Install Log" ON
     )
 option( strict_compile
     "Treat all warnings as errors." ON
@@ -31,7 +44,6 @@ set( debug_flags "-O0" "-g" )
 # Dependencies
 ########################################################################
 
-set( SPDLOG_BUILD_TESTING CACHE BOOL OFF )
 set( REPOSITORIES "release"
     CACHE STRING
     "Options for where to fetch repositories: develop, release, local"
@@ -52,14 +64,25 @@ endif()
 ########################################################################
 # Project targets
 ########################################################################
+include(GNUInstallDirs)
+
+string( CONCAT prefix
+  "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src>"
+  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
+)
 
 add_library( Log INTERFACE
     )
-target_include_directories( Log INTERFACE src/ )
-target_link_libraries( Log
-    INTERFACE catch-adapter
-    INTERFACE spdlog
-    )
+
+target_include_directories( Log INTERFACE ${prefix} )
+
+# treat spdlog specially due to mixed namespace usage
+if (TARGET spdlog::spdlog)
+    target_link_libraries(Log INTERFACE spdlog::spdlog)
+else()
+    target_link_libraries(Log INTERFACE spdlog)
+endif()
+
 
 
 #######################################################################
@@ -69,8 +92,50 @@ target_link_libraries( Log
 if( CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR )
 
     # unit testing
-    if( Log_unit_tests )
+    if( ${Log_unit_tests} )
         include( cmake/unit_testing.cmake )
     endif()
 
 endif()
+#######################################################################
+# Installation 
+#######################################################################
+
+if(Log_installation)
+    include(CMakePackageConfigHelpers)
+
+    install(TARGETS Log EXPORT Log-targets
+      ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+      LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+      RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"
+    )
+
+    install(EXPORT Log-targets
+      FILE "Log-targets.cmake"
+      DESTINATION share/cmake/Log
+    )
+
+    configure_package_config_file(
+      ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Log-config.cmake.in
+      ${CMAKE_BINARY_DIR}/Log-config.cmake
+      INSTALL_DESTINATION share/cmake/Log
+    )
+
+    install(DIRECTORY src/
+      DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
+      FILES_MATCHING PATTERN "*.hpp"
+      PATTERN "*test*" EXCLUDE
+    )
+
+    install(FILES
+      "${PROJECT_BINARY_DIR}/Log-config.cmake"
+      DESTINATION share/cmake/Log
+    )
+
+    if(NOT subproject)
+      set(CPACK_PACKAGE_VENDOR "Los Alamos National Laboratory")
+      set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+      include(CPack)
+    endif()
+endif()
+
