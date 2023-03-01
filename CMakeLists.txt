@@ -7,7 +7,7 @@ if(DEFINED PROJECT_NAME)
   set(subproject ON)
 endif()
 
-cmake_minimum_required( VERSION 3.14 )
+cmake_minimum_required( VERSION 3.24 )
 project( Log LANGUAGES CXX )
 
 
