@@ -74,6 +74,8 @@ string( CONCAT prefix
 add_library( Log INTERFACE
     )
 
+add_library( njoy::Log ALIAS Log )
+
 target_include_directories( Log INTERFACE ${prefix} )
 
 # treat spdlog specially due to mixed namespace usage
@@ -112,6 +114,7 @@ if(Log_installation)
 
     install(EXPORT Log-targets
       FILE "Log-targets.cmake"
+      NAMESPACE njoy::
       DESTINATION share/cmake/Log
     )
 
