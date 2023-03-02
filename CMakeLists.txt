@@ -119,8 +119,8 @@ if(Log_installation)
     )
 
     configure_package_config_file(
-      ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Log-config.cmake.in
-      ${CMAKE_BINARY_DIR}/Log-config.cmake
+      ${CMAKE_CURRENT_SOURCE_DIR}/cmake/log-config.cmake.in
+      ${CMAKE_BINARY_DIR}/log-config.cmake
       INSTALL_DESTINATION share/cmake/Log
     )
 
@@ -131,7 +131,7 @@ if(Log_installation)
     )
 
     install(FILES
-      "${PROJECT_BINARY_DIR}/Log-config.cmake"
+      "${PROJECT_BINARY_DIR}/log-config.cmake"
       DESTINATION share/cmake/Log
     )
 
