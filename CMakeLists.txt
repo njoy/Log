@@ -118,9 +118,11 @@ if(Log_installation)
       DESTINATION share/cmake/Log
     )
 
+    string(TOLOWER Log lowercasePackageName)
+
     configure_package_config_file(
-      ${CMAKE_CURRENT_SOURCE_DIR}/cmake/log-config.cmake.in
-      ${CMAKE_BINARY_DIR}/log-config.cmake
+      ${CMAKE_CURRENT_SOURCE_DIR}/cmake/${lowercasePackageName}-config.cmake.in
+      ${PROJECT_BINARY_DIR}/${lowercasePackageName}-config.cmake
       INSTALL_DESTINATION share/cmake/Log
     )
 
@@ -131,7 +133,7 @@ if(Log_installation)
     )
 
     install(FILES
-      "${PROJECT_BINARY_DIR}/log-config.cmake"
+      "${PROJECT_BINARY_DIR}/${lowercasePackageName}-config.cmake"
       DESTINATION share/cmake/Log
     )
 
